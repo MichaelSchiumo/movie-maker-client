@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import MovieContext from '../../context/movie/movieContext';
+import MovieItem from './MovieItem';
 
 const Movies = () => {
   //access any state or methods associated with movie context
@@ -10,7 +11,7 @@ const Movies = () => {
   return (
     <Fragment>
       {movies.map((movie) => (
-        <h1>{movie.desc}</h1>
+        <MovieItem movie={movie} key={movie.id} />
       ))}
     </Fragment>
   );
