@@ -32,6 +32,7 @@ const MovieState = (props) => {
         id: 3,
       },
     ],
+    filtered: null,
   };
   const [state, dispatch] = useReducer(movieReducer, initialState);
 
@@ -42,13 +43,22 @@ const MovieState = (props) => {
   //SET CURRENT
   //CLEAR CURRENT
   //FILTER MOVIES
-  //CLEAR FILTERS
+  const filterMovies = (text) => {
+    dispatch({ type: FILTER_MOVIES, payload: text });
+  };
+  //CLEAR FILTER
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
 
   return (
     <MovieContext.Provider
       value={{
         movies: state.movies,
+        filtered: state.filtered,
         addMovie,
+        filterMovies,
+        clearFilter,
       }}
     >
       {props.children}

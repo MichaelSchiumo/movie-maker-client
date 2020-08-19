@@ -6,13 +6,13 @@ const Movies = () => {
   //access any state or methods associated with movie context
   const movieContext = useContext(MovieContext);
 
-  const { movies } = movieContext;
+  const { movies, filtered } = movieContext;
 
   return (
     <Fragment>
-      {movies.map((movie) => (
-        <MovieItem movie={movie} key={movie.id} />
-      ))}
+      {filtered !== null
+        ? filtered.map((movie) => <MovieItem movie={movie} key={movie.id} />)
+        : movies.map((movie) => <MovieItem movie={movie} key={movie.id} />)}
     </Fragment>
   );
 };
