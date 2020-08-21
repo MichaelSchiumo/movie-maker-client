@@ -33,7 +33,7 @@ const Register = () => {
   return (
     <div className='form-container'>
       <h1>
-        Account <span className='text-primary'>Regster</span>
+        Account <span className='text-primary'>Register</span>
       </h1>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
@@ -52,6 +52,8 @@ const Register = () => {
             name='password'
             value={password}
             onChange={onChange}
+            minLength='6'
+            required
           />
         </div>
         <div className='form-group'>
@@ -61,6 +63,8 @@ const Register = () => {
             name='password_confirmation'
             value={password_confirmation}
             onChange={onChange}
+            minLength='6'
+            required
           />
         </div>
         <input
