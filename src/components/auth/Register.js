@@ -9,12 +9,21 @@ const Register = () => {
 
   const { username, password, password_confirmation } = user;
 
+  const onChange = (event) => {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log('Register submit', user);
+  };
+
   return (
     <div className='form-container'>
       <h1>
         Account <span className='text-primary'>Regster</span>
       </h1>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className='form-group'>
           <label htmlFor='username'>Username</label>
           <input
@@ -42,6 +51,11 @@ const Register = () => {
             onChange={onChange}
           />
         </div>
+        <input
+          type='submit'
+          value='Register'
+          className='btn btn-primary btn-block'
+        />
       </form>
     </div>
   );
