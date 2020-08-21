@@ -7,7 +7,7 @@ const About = () => {
       <p className='my-1'>A fun way to rate your favorite movies!</p>
       <p className='bg-dark p'>
         <strong>
-          Create by Michael Schiumo with <i className='fas fa-heart' />
+          Created by Michael Schiumo with <i className='fas fa-heart' />
         </strong>
       </p>
     </div>
