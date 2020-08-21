@@ -1,6 +1,7 @@
 import React from 'react';
 import Movies from '../movies/Movies';
 import MovieForm from '../movies/MovieForm';
+import MovieFilter from '../movies/MovieFilter';
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <MovieForm />
       </div>
       <div>
+        <MovieFilter />
         <Movies />
       </div>
     </div>
