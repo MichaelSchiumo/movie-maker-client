@@ -1,18 +1,22 @@
 import React, { useState, useContext } from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
+  const { register } = authContext;
 
   const [user, setUser] = useState({
-    username: '',
+    name: '',
+    email: '',
     password: '',
     password_confirmation: '',
   });
 
-  const { username, password, password_confirmation } = user;
+  const { name, email, password, password_confirmation } = user;
 
   const onChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -21,12 +25,16 @@ const Register = () => {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    if (username === '' || password === '') {
+    if (name === '' || password === '') {
       setAlert('Please enter all fields', 'danger');
     } else if (password !== password_confirmation) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      console.log('Register submit', user);
+      register({
+        name,
+        password,
+        password_confirmation,
+      });
     }
   };
 
@@ -37,12 +45,17 @@ const Register = () => {
       </h1>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='username'>Username</label>
+          <label htmlFor='name'>Name</label>
+          <input type='text' name='name' value={name} onChange={onChange} />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='password'>Email</label>
           <input
-            type='text'
-            name='username'
-            value={username}
+            type='email'
+            name='email'
+            value={email}
             onChange={onChange}
+            required
           />
         </div>
         <div className='form-group'>

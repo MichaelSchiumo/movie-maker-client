@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import AuthContext from './authContext';
+import axios from 'axios';
 import authReducer from './authReducer';
 import {
   REGISTER_SUCCESS,
@@ -25,6 +26,28 @@ const AuthState = (props) => {
   //Load User
 
   //Register User
+  const register = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.post(
+        'https://movie-maker-express.herokuapp.com/api/users',
+        formData,
+        config
+      );
+
+      console.log(res);
+
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+    } catch (error) {
+      //not sure that we have a msg attribute in the payload?
+      dispatch({ type: REGISTER_FAIL, payload: error.res.data.msg });
+    }
+  };
 
   //Login user
 
@@ -40,6 +63,7 @@ const AuthState = (props) => {
         loading: state.loading,
         user: state.user,
         error: state.error,
+        register,
       }}
     >
       {props.children}
